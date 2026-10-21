@@ -108,16 +108,19 @@ environment and run the test suite with pytest:
     git clone https://github.com/lmfit/uncertainties.git
     cd uncertainties
     python -m pip install -e ".[all]"
+    cd tests
     python -m pytest --cov=uncertainties --cov-report=term
 
 The ``all`` extra includes the test, array, and documentation dependencies.
 The editable installation lets the tests use your local changes. Run pytest
-from the repository root: the configuration in ``pyproject.toml`` includes
-both the tests in ``tests/`` and the doctests in the source and ``doc/``.
+from the ``tests/`` directory. To also collect the doctests in the package
+source and documentation, include those directories explicitly::
+
+    python -m pytest . ../uncertainties ../doc
 
 To run a single test module while working on a change, use, for example::
 
-    python -m pytest tests/test_uncertainties.py
+    python -m pytest test_uncertainties.py
 
 
 Git branches
